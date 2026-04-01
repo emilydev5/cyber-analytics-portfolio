@@ -2,59 +2,73 @@ import pandas as pd
 import altair as alt
 import requests
 import math
-from io import StringIO
+import os
 
-def calculate_entropy(text):
-    """Calculates the Shannon Entropy of a string to detect randomness."""
+def calculate_complexity(text):
+    """Measures how random or 'jumbled' a website name is."""
     if not text: return 0
-    probs = [float(text.count(c)) / len(text) for c in set(text)]
+    # Clean the URL to focus on the domain name itself
+    clean_text = text.replace("http://", "").replace("https://", "").split('/')[0]
+    probs = [float(clean_text.count(c)) / len(clean_text) for c in set(clean_text)]
     return -sum(p * math.log(p, 2) for p in probs)
 
 def run_project():
-    print("🌐 Fetching live phishing feed...")
+    print("🌐 Fetching live phishing data...")
     url = "https://openphish.com/feed.txt"
+    
     try:
         response = requests.get(url, timeout=10)
-        # Get first 100 entries for the demo visualization
-        urls = response.text.splitlines()[:100]
+        # Taking 50 live malicious samples for a cleaner visual
+        malicious_urls = response.text.splitlines()[:50]
     except Exception as e:
-        print(f"❌ Error fetching data: {e}")
+        print(f"❌ Connection Error: {e}")
         return
 
-    # 1. Feature Extraction
     results = []
-    for u in urls:
+    
+    # Process Malicious URLs
+    for u in malicious_urls:
         results.append({
-            'url': u,
+            'website': u[:40] + "...", # Truncate for tooltip neatness
             'length': len(u),
-            'entropy': calculate_entropy(u),
-            'is_phishing': 1
+            'randomness_score': calculate_complexity(u),
+            'type': 'Malicious'
         })
     
-    # Add some 'Safe' baseline data for comparison
-    safe_urls = ['google.com', 'apple.com', 'github.com', 'microsoft.com', 'amazon.com']
-    for u in safe_urls:
-        results.append({'url': u, 'length': len(u), 'entropy': calculate_entropy(u), 'is_phishing': 0})
+    # Process Known Safe URLs for comparison
+    safe_list = ['google.com', 'apple.com', 'github.com', 'microsoft.com', 'amazon.com', 'netflix.com']
+    for u in safe_list:
+        results.append({
+            'website': u,
+            'length': len(u),
+            'randomness_score': calculate_complexity(u),
+            'type': 'Verified Safe'
+        })
 
     df = pd.DataFrame(results)
 
-    # 2. Create Visualization
-    chart = alt.Chart(df).mark_circle(size=100).encode(
-        x=alt.X('length:Q', title='URL Length'),
-        y=alt.Y('entropy:Q', title='URL Entropy'),
-        color=alt.Color('is_phishing:N', 
-                        scale=alt.Scale(domain=[1, 0], range=['#ff4b2b', '#2ecc71']),
-                        legend=alt.Legend(title="Threat Level", labelExpr="datum.value == 1 ? 'Malicious' : 'Verified Safe'")),
-        tooltip=['url', 'entropy']
+    # 2. Create the Visual
+    # Using fixed width (600) instead of 'container' to prevent blank renders
+    chart = alt.Chart(df).mark_circle(size=150, opacity=0.8).encode(
+        x=alt.X('length:Q', title='Website Address Length'),
+        y=alt.Y('randomness_score:Q', title='Randomness Score (Complexity)'),
+        color=alt.Color('type:N', 
+                        scale=alt.Scale(domain=['Malicious', 'Verified Safe'], 
+                                       range=['#ff4b2b', '#2ecc71']),
+                        legend=alt.Legend(title="Site Status")),
+        tooltip=['website', 'randomness_score', 'length']
     ).properties(
-        width='container',
+        width=600, 
         height=400,
-        title='Phishing Domain Analysis (Live Feed)'
+        title='Phishing Website Fingerprint'
     ).interactive()
 
-    # 3. Export
+    # 3. Ensure directory exists and Save
+    os.makedirs('docs/charts', exist_ok=True)
+    
+    # Important: Setting standalone=False ensures the data is bundled inside the JSON
     chart.save('docs/charts/project_1_phishing.json')
-    print("✅ Project 1 live chart exported to docs/charts/")
+    print("✅ Success: docs/charts/project_1_phishing.json created.")
 
 if __name__ == "__main__":
     run_project()
