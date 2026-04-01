@@ -1,0 +1,1 @@
+{"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "mark": "line", "data": {"values": [{"x": 1, "y": 1}]}, "encoding": {"x": {"field": "x", "type": "quantitative"}, "y": {"field": "y", "type": "quantitative"}}}
