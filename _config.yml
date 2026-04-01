@@ -1,4 +1,5 @@
 theme: jekyll-theme-minimal
-title: "50 Project Portfolio"
+title: "Data Analysis Portfolio"
 description: "A forensic exploration of cybersecurity, infrastructure, and real-world data analytics by Emily Foster."
 show_downloads: true
+include: ["docs"] # This tells GitHub to definitely include the docs folder in the build
