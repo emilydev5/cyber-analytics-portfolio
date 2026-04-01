@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Data Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ Data & Cyber Portfolio</h1>
+            <p>Practical analytics applied to security and infrastructure.</p>
+        </header>
+
+        <section class="project-card">
+            <h2>Project 21: Network Uptime Analysis</h2>
+            <div id="vis-uptime"></div>
+            
+            <div class="so-what-box">
+                <strong>The "So What?"</strong>
+                By baselining throughput medians, we can automatically trigger ISP service tickets during "brownouts," reducing manual monitoring time by 60%.
+            </div>
+            <p class="importance"><strong>Importance:</strong> Network stability is the backbone of remote operations. Identifying degradation before a total crash prevents widespread productivity loss.</p>
+        </section>
+    </div>
+
+    <script>
+        // Tell Vega to embed the JSON chart into the div with id 'vis-uptime'
+        vegaEmbed('#vis-uptime', 'charts/uptime_chart.json');
+    </script>
+</body>
+</html>
