@@ -2,5 +2,8 @@ venv/
 __pycache__/
 .DS_Store
 *.pyc
-data/*.csv
-data/*.pcap
+data/
+*.txt
+*.csv
+venv/
+__pycache__/

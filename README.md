@@ -1,32 +1,31 @@
 # 🛡️ 50 Data Analytics & Cybersecurity Projects
-### High-Impact Forensics & "Pudding-Style" Visualizations
+### High-Impact Forensics & "Pudding-Style" Interactive Visualizations
 
-This repository is a comprehensive portfolio of 50 data-driven projects covering **Cybersecurity**, **Network Reliability**, **Windows Forensics**, and **Real-World Infrastructure**. Every project is built with a "So What?" philosophy—focusing on the business and human impact of data.
+A professional portfolio of 50 data-driven projects focused on **Cybersecurity**, **Network Reliability**, and **Infrastructure Forensics**. This repository uses a "Zero-Footprint" approach, keeping raw data local while deploying interactive JSON-based visualizations to GitHub Pages.
 
 ---
 
 ## 🚀 Quick Start: Environment Setup
 
-This repository is cross-platform. Follow the instructions for your operating system to initialize the virtual environment and install dependencies.
+This repository is cross-platform. Use the provided automation scripts to initialize your virtual environment and install dependencies.
 
 ### 💻 Windows
 1. Double-click `setup_env.bat` in the root directory.
-2. Open VS Code and select the interpreter: `.\venv\Scripts\python.exe`.
+2. In VS Code, select the interpreter: `.\venv\Scripts\python.exe`.
 
 ### 🍎 macOS / Linux
-1. Open Terminal in the project root.
-2. Run: `./setup_env.sh` (If permission is denied, run `chmod +x setup_env.sh` first).
-3. Open VS Code and select the interpreter: `./venv/bin/python`.
+1. Open Terminal and run: `./setup_env.sh`.
+2. In VS Code, select the interpreter: `./venv/bin/python`.
 
 ---
 
 ## 🛠️ Repository Structure
 ```text
-├── data/                 # Raw datasets (CSV, PCAP, JSON)
-├── docs/                 # GitHub Pages source (Live Site)
-│   ├── charts/           # Exported Altair/Vega-Lite JSON files
-│   └── index.html        # The "Pudding-style" dashboard
-├── notebooks/            # Jupyter Notebooks for EDA
-├── scripts/              # Python ETL & Visualization generators
+├── data/                 # Raw datasets (Git-ignored)
+├── docs/                 # GitHub Pages Source
+│   ├── charts/           # Exported Vega-Lite/Altair JSONs
+│   └── index.html        # The Interactive Dashboard
+├── scripts/              
+│   └── projects/         # Individual Python logic for 50 projects
 ├── requirements.txt      # Project dependencies (Altair, Pandas, Scapy)
-└── setup_env.sh/.bat     # Cross-platform setup automation
+└── _config.yml           # Jekyll Site Metadata
