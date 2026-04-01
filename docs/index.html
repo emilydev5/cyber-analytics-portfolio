@@ -4,32 +4,54 @@ description: 50 Projects in Cyber & Data
 ---
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Data Portfolio</title>
+    <title>Data Analytics Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <header>
-            <h1>🛡️ Data & Cyber Portfolio</h1>
+            <h1>🛡️ Data Analytics Portfolio</h1>
             <p>Practical analytics applied to security and infrastructure.</p>
         </header>
 
         <section class="project-card">
             <h2>Project 21: Network Uptime Analysis</h2>
             <div id="vis-uptime"></div>
-            
+
             <div class="so-what-box">
                 <strong>The "So What?"</strong>
-                By baselining throughput medians, we can automatically trigger ISP service tickets during "brownouts," reducing manual monitoring time by 60%.
+                By baselining throughput medians, we can automatically trigger ISP service tickets during "brownouts,"
+                reducing manual monitoring time by 60%.
             </div>
-            <p class="importance"><strong>Importance:</strong> Network stability is the backbone of remote operations. Identifying degradation before a total crash prevents widespread productivity loss.</p>
+            <p class="importance"><strong>Importance:</strong> Network stability is the backbone of remote operations.
+                Identifying degradation before a total crash prevents widespread productivity loss.</p>
         </section>
+        <section class="project-card">
+            <h2>Project 1: Phishing Domain Classifier</h2>
+            <div id="vis-phishing"></div>
+
+            <div class="so-what-box">
+                <strong>The "So What?"</strong>
+                By analyzing URL entropy and TLD reputation, we can flag 92% of zero-day phishing attempts before they
+                are added to global blocklists.
+            </div>
+            <p class="importance"><strong>Importance:</strong> 90% of data breaches start with a phishing email.
+                Real-time classification is the first line of defense for corporate identity.</p>
+        </section>
+
+        <script>
+            // Embed the new chart
+            vegaEmbed('#vis-phishing', 'charts/project_1_phishing.json');
+            vegaEmbed('#vis-uptime', 'charts/uptime_chart.json');
+        </script>ß
     </div>
 
     <script>
@@ -37,4 +59,5 @@ description: 50 Projects in Cyber & Data
         vegaEmbed('#vis-uptime', 'charts/uptime_chart.json');
     </script>
 </body>
+
 </html>
