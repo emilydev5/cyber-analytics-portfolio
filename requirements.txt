@@ -1,15 +1,17 @@
 # Data Manipulation & Math
 pandas>=2.1.0
 numpy>=1.26.0
+scikit-learn>=1.3.0  
 
 # Visualizations (The "Pudding" Stack)
 altair>=5.2.0
 vega_datasets>=0.9.0
 
-# Cybersecurity & Networkingß
+# Cybersecurity & Networking
 scapy>=2.5.0
 cryptography>=41.0.0
 
-# Web Tools (Optional but helpful)
+# Web Tools & APIs
 requests>=2.31.0
 beautifulsoup4>=4.12.0
+python-dotenv>=1.0.0

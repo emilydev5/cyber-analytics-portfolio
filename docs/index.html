@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Analytics & Infrastructure Portfolio</title>
-    <link rel="stylesheet" href="./style.css">
+    
+    <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -13,7 +15,7 @@
 
     <header>
         <h1>Data Analytics & Infrastructure</h1>
-        <p>50 Projects in Cybersecurity & Network Resilience</p>
+        <p>50 Forensic Projects in Cybersecurity & Network Resilience</p>
     </header>
 
     <main class="portfolio-grid">
@@ -23,35 +25,37 @@
             <div id="vis-phishing" class="chart-container"></div>
             <div class="so-what-box">
                 <strong>The "So What?"</strong><br>
-                When criminals create fake login pages, they use long, random-looking website names. This tool calculates a "Randomness Score" to spot them. By flagging these jumbled names, we block 90% of fake websites before an employee ever sees them.
+                This tool calculates a "Randomness Score" for URLs. By flagging high-entropy domains, we can identify phishing infrastructure before it's used in a campaign, proactively blocking malicious traffic.
             </div>
             <p class="importance">
-                Stopping these addresses at the source protects the entire network from the very first step.
+                Protects the perimeter by stopping credential theft at the DNS level.
             </p>
         </section>
 
         <section class="project-card">
-            <h2>Project 21: Circuit Reliability Monitor</h2>
-            <div id="vis-uptime" class="chart-container"></div>
+            <h2>Project 02: Botnet Swarm Attribution</h2>
+            <div id="vis-honeypot" class="chart-container"></div>
             <div class="so-what-box">
                 <strong>The "So What?"</strong><br>
-                Distinguishes between a hardware failure and a temporary service "brownout." This lets technicians fix the right problem immediately, reducing network downtime by 40%.
+                Using the AbuseIPDB API and K-Means clustering, this script groups malicious IPs by confidence and volume. This allows us to distinguish between lone scanners and coordinated botnet swarms.
             </div>
             <p class="importance">
-                Speeding up the "Root Cause" analysis keeps the global business running without interruption.
+                Enables automated, tier-based firewall responses based on attacker behavior clusters.
             </p>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 Emily Foster | Python & Data Analytics</p>
+        <p>&copy; 2026 Emily Foster | VP & Infrastructure Engineer</p>
     </footer>
 
     <script>
-        const opt = { actions: false };
-        vegaEmbed('#vis-phishing', 'charts/project_1_phishing.json', opt).catch(console.error);
-        vegaEmbed('#vis-uptime', 'charts/uptime_chart.json', opt).catch(console.error);
+        const opt = { actions: false, width: "container" };
+
+        // Embed remaining forensic charts
+        vegaEmbed('#vis-phishing', 'charts/project_01_phishing.json', opt).catch(console.error);
+        vegaEmbed('#vis-honeypot', 'charts/project_02_honeypot.json', opt).catch(console.error);
     </script>
 </body>
 </html>
